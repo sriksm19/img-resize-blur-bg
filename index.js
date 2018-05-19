@@ -52,7 +52,10 @@ app.get(/\/$|\/([^\/]+)(\/|\/index.html)$/i, (req, res) => {
 		.catch(error => res.status(500).send(error.toString()));
 });
 
-app.use('/static', express.static(path.join(__dirname, 'app/static')));
+app.use(
+	'/static',
+	express.static(path.join(__dirname, 'app/static'), { maxAge: '1y' })
+);
 
 require('http')
 	.createServer(app)

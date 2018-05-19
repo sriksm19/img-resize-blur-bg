@@ -1,2 +1,28 @@
+<div class="container">
+	<form class="mt-4" id="upload_form">
+		<div class="form-group">
+			<label for="upload__img">Upload the file:</label>
+			<input type="file" class="form-control-file mt-2" id="upload__img" required>
+		</div>
+		<div class="form-group mt-4">
+			<label for="upload__dimensions">Enter the final dimensions:</label>
+			<div class="row">
+				<div class="my-2 col">
+					<input type="number" class="form-control" id="upload__dimensions--w" name="width" placeholder="Width" required>
+				</div>
+				<div class="my-2 col">
+					<input type="number" class="form-control" id="upload__dimensions--h" name="height" placeholder="Height" required>
+				</div>
+			</div>
+		</div>
+		<div class="my-3">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+	<canvas id="canvas" class "col" style="max-width: 100%;"></canvas>
 
-	Naththing
+
+
+</div>
+<!-- <script src="/static/js/konva.min.js"></script> -->
+<script src="/static/js/upload.js"></script>
