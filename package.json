@@ -1,0 +1,23 @@
+{
+	"name": "img-resize",
+	"version": "1.0.0",
+	"description": "image resizer",
+	"main": "index.js",
+	"author": "Srikanth Sethumadhavan",
+	"license": "MIT",
+	"devDependencies": {
+		"browser-refresh": "^1.7.2",
+		"crypto": "^1.0.1",
+		"express": "^4.16.3",
+		"mz": "^2.7.0"
+	},
+	"dependencies": {
+		"cross-env": "^5.1.5",
+		"handlebars": "^4.0.11",
+		"nodemon": "^1.17.4"
+	},
+	"scripts": {
+		"start": "cross-env NODE_ENV=development nodemon --exec node -- ./index.js",
+		"start:br": "cross-env NODE_ENV=development browser-refresh ./index.js"
+	}
+}
