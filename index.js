@@ -56,7 +56,8 @@ app.use(
 	'/static',
 	express.static(path.join(__dirname, 'app/static'), { maxAge: '1y' })
 );
-
+const port = process.env.PORT || 8080;
 require('http')
 	.createServer(app)
-	.listen(8080);
+	.listen(port);
+console.log('Listening to port: ' + port);
