@@ -2,7 +2,7 @@
 	<form class="mt-4" id="upload_form">
 		<div class="form-group">
 			<label for="upload__img">Upload the file:</label>
-			<input type="file" class="form-control-file mt-2" id="upload__img" required>
+			<input type="file" class="form-control-file mt-2" id="upload__img" accept="image/*" required>
 		</div>
 		<div class="form-group mt-4">
 			<label for="upload__dimensions">Enter the final dimensions:</label>
@@ -19,10 +19,35 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</div>
 	</form>
-	<canvas id="canvas" class "col" style="max-width: 100%;"></canvas>
+	<div class="canvas__result d-none">
+		<canvas id="canvas" class "col" style="max-width: 100%;"></canvas>
+		<div class="canvas__picInfo my-3">
+		</div>
+		<div class="form-group canvas__quality d-none">
+			<label for="formControlRange">Quality:
+				<span class="canvas__qualityVal">0.9</span>
+			</label>
+			<input type="range" class="form-control-range canvas__qualityChange" value="0.9" min="0" max="1" id="formControlRange" step="0.1">
+		</div>
+		<div class="form-group">
+			Type:
+			<div class="form-check form-check-inline">
+				<input class="form-check-input canvas__fType" type="radio" name="inlineRadioOptions" id="png" value="png" checked>
+				<label class="form-check-label" for="png">png</label>
+				<small>(use an external compressor for now)</small>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input canvas__fType" type="radio" name="inlineRadioOptions" id="jpeg" value="jpeg">
+				<label class="form-check-label" for="jpeg">jpg</label>
+			</div>
+		</div>
+		<div class="my-3">
+			<a href="#" class="canvas__dloadBtn btn btn-primary">Submit</a>
+		</div>
+	</div>
 
 
 
 </div>
 <!-- <script src="/static/js/konva.min.js"></script> -->
-<script src="/static/js/upload.js"></script>
+<script src="/static/js/main.js"></script>

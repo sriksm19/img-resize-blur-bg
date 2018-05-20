@@ -1,3 +1,14 @@
+const $dloadBtn = document.querySelector('.canvas__dloadBtn');
+const $picInfo = document.querySelector('.canvas__picInfo');
+const $canvas = document.getElementById('canvas');
+const $ctrlQuality = document.querySelector('.canvas__qualityChange');
+const $ctrlFType = document.querySelectorAll('.canvas__fType');
+const $canvasQlty = document.querySelector('.canvas__quality');
+const $canvasQltyVal = document.querySelector('.canvas__qualityVal');
+
+let dloadFType = 'png';
+let dloadQlty = 0.92;
+
 const drawBlur = (canvas, bg, img) => {
 	// Store the width and height of the canvas for below
 	const w = canvas.width;
@@ -55,16 +66,16 @@ const drawNormal = (canvas, bg, img) => {
 	canvasContext.scale(1, 1);
 	canvasContext.filter = 'blur(0px)';
 	canvasContext.drawImage(bg, dx, dy, wFin, hFin);
+	document.querySelector('.canvas__result').classList.remove('d-none');
 };
 /**
  * embed to canvas
  */
 
 const embedToCanvas = (src, w, h) => {
-	const canvas = document.getElementById('canvas');
-	canvas.width = w;
-	canvas.height = h;
-	const canvasContext = canvas.getContext('2d');
+	$canvas.width = w;
+	$canvas.height = h;
+	const canvasContext = $canvas.getContext('2d');
 	const canvasBackground = new Image();
 	canvasBackground.src = src;
 	canvasBackground.onload = function() {
@@ -72,8 +83,9 @@ const embedToCanvas = (src, w, h) => {
 			w: this.width,
 			h: this.height,
 		};
-		drawBlur(canvas, canvasBackground, img);
-		drawNormal(canvas, canvasBackground, img);
+		drawBlur($canvas, canvasBackground, img);
+		drawNormal($canvas, canvasBackground, img);
+		updateSize();
 	};
 };
 
@@ -88,8 +100,55 @@ const handleFileSelect = (files, w, h) => {
 	reader.readAsDataURL(f);
 };
 
-let form;
+const downloadCanvas = (e, fType = dloadFType, qlty = dloadQlty) => {
+	const link = e.target;
+	const { width, height } = $canvas;
+	const href = $canvas.toDataURL(`image/${fType}`, Number(qlty));
+	$picInfo.innerHTML = `${href.length * 3 / (4 * 1024)}KB`;
 
+	link.href = href;
+	link.download = `banner__${width}-${height}.${fType}`;
+};
+
+const updateSize = (fType = 'png', qlty = 0.92) => {
+	const href = $canvas.toDataURL(`image/${fType}`, Number(qlty));
+	const size = `${href.length * 3 / (4 * 1024)}KB`;
+	$picInfo.innerHTML = size;
+};
+
+const updatefType = fType => {
+	updateSize(fType, dloadQlty);
+	dloadFType = fType;
+};
+
+const updateQlty = qlty => {
+	updateSize(dloadFType, qlty);
+	dloadQlty = qlty;
+};
+
+$dloadBtn.addEventListener('click', e => {
+	downloadCanvas(e);
+});
+
+$ctrlQuality.addEventListener('input', e => {
+	const { value } = e.target;
+	$canvasQltyVal.innerHTML = value;
+	updateQlty(value);
+});
+
+$ctrlFType.forEach(el => {
+	el.addEventListener('change', e => {
+		const { value } = e.target;
+		if (value === 'png') {
+			$canvasQlty.classList.add('d-none');
+		} else {
+			$canvasQlty.classList.remove('d-none');
+		}
+		updatefType(value);
+	});
+});
+
+let form;
 if (window.FileReader) {
 	form = document.getElementById('upload_form');
 
