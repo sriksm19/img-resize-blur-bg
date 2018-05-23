@@ -86,6 +86,7 @@ const embedToCanvas = (src, w, h) => {
 		drawBlur($canvas, canvasBackground, img);
 		drawNormal($canvas, canvasBackground, img);
 		updateSize();
+		compress($canvas, dloadFType, dloadQlty);
 	};
 };
 
@@ -162,3 +163,28 @@ if (window.FileReader) {
 } else {
 	document.write('This browser does not support FileReader');
 }
+
+const compress = (canvas, fType, qlty) => {
+	const uri = canvas.toDataURL();
+	// let blob;
+	// canvas.toBlob(
+	// 	b => {
+	// 		console.log(b)
+	// 		blob = b;
+	// 	},
+	// 	fType,
+	// 	qlty
+	// );
+
+	fetch('/compress/', {
+		body: `&uri=${uri}&qlty=${qlty}`,
+		headers: new Headers({
+			'Content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+		}),
+		method: 'POST',
+	})
+		.then(res => res.text())
+		.then(res => {
+			console.log(res);
+		});
+};

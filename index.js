@@ -7,7 +7,9 @@ const path = require('path');
 const fs = require('mz/fs');
 const handlebars = require('handlebars');
 const crypto = require('crypto');
-
+const sharp = require('sharp');
+const bodyParser = require('body-parser');
+const multer = require('multer');
 handlebars.registerHelper('ifNotEq', function(a, b, opts) {
 	if (a !== b) {
 		return opts.fn(this);
@@ -50,6 +52,18 @@ app.get(/\/$|\/([^\/]+)(\/|\/index.html)$/i, (req, res) => {
 			res.send(content);
 		})
 		.catch(error => res.status(500).send(error.toString()));
+});
+
+app.post('/compress/', function(req, res) {
+	console.log('POST /');
+	const { uri, qlty } = req.body;
+	sharp(uri)
+		.metadata()
+		.then(function(metadata) {
+			console.log(metadata.format);
+		});
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.end('thanks');
 });
 
 app.use(
