@@ -2,17 +2,48 @@
 	<form class="mt-4" id="upload_form">
 		<div class="form-group">
 			<label for="upload__img">Upload the file:</label>
-			<input type="file" class="form-control-file mt-2" id="upload__img" accept="image/*" required>
+			<input type="file" class="form-control-file mt-2" id="upload__img" accept="image/*" required />
 		</div>
 		<div class="form-group mt-4">
 			<label for="upload__dimensions">Enter the final dimensions:</label>
 			<div class="row">
 				<div class="my-2 col">
-					<input type="number" class="form-control" id="upload__dimensions--w" name="width" placeholder="Width" required>
+					<input type="number" class="form-control" id="upload__dimensions--w" name="width"
+						placeholder="Width" />
 				</div>
 				<div class="my-2 col">
-					<input type="number" class="form-control" id="upload__dimensions--h" name="height" placeholder="Height" required>
+					<input type="number" class="form-control" id="upload__dimensions--h" name="height"
+						placeholder="Height" />
 				</div>
+			</div>
+
+		</div>
+		<div class="form-group">
+			Swag Position:
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="swagPosRadio" id="sp-ns" value="sp-ns" checked />
+				<label class="form-check-label" for="sp-ns">No Swag</label>
+
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="swagPosRadio" id="sp-tl" value="sp-tl" />
+				<label class="form-check-label" for="sp-tl">Top Left</label>
+
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="swagPosRadio" id="sp-tr" value="sp-tr" />
+				<label class="form-check-label" for="sp-tr">Top Right</label>
+
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="swagPosRadio" id="sp-bl" value="sp-bl" />
+				<label class="form-check-label" for="sp-bl">Bottom Left</label>
+
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="swagPosRadio" id="sp-br" value="sp-br" />
+				<label class="form-check-label" for="sp-br">Bottom Right</label>
+
 			</div>
 		</div>
 		<div class="my-3">
@@ -20,28 +51,33 @@
 		</div>
 	</form>
 	<div class="canvas__result d-none">
-		<canvas id="canvas" class "col" style="max-width: 100%;"></canvas>
-		<div class="canvas__compressedImg my-3">
-		</div>
+		<canvas id="canvas" style="max-width: 100%;"></canvas>
+		<div class="canvas__compressedImg my-3"></div>
 		<div class="canvas__picInfoWrap my-3">
 			Size:
 			<span class="canvas__picInfo"></span>
 		</div>
 		<div class="form-group canvas__quality d-none">
-			<label for="formControlRange">Quality:
+			<label for="formControlRange">
+				Quality:
 				<span class="canvas__qualityVal">0.9</span>
 			</label>
-			<input type="range" class="form-control-range canvas__qualityChange" value="0.9" min="0" max="1" id="formControlRange" step="0.1">
+			<input type="range" class="form-control-range canvas__qualityChange" value="0.9" min="0" max="1"
+				id="formControlRange" step="0.1" />
 		</div>
 		<div class="form-group">
 			Type:
 			<div class="form-check form-check-inline">
-				<input class="form-check-input canvas__fType" type="radio" name="inlineRadioOptions" id="png" value="png" checked>
+				<input class="form-check-input canvas__fType" type="radio" name="inlineRadioOptions" id="png"
+					value="png" checked />
 				<label class="form-check-label" for="png">png</label>
-				<small>(use an external compressor for now)</small>
+				<small>(<a href="https://kraken.io/web-interface" target="_blank" rel="nofollow noreferrer noopener">use
+						an external compressor for
+						now</a>)</small>
 			</div>
 			<div class="form-check form-check-inline">
-				<input class="form-check-input canvas__fType" type="radio" name="inlineRadioOptions" id="jpeg" value="jpeg">
+				<input class="form-check-input canvas__fType" type="radio" name="inlineRadioOptions" id="jpeg"
+					value="jpeg" />
 				<label class="form-check-label" for="jpeg">jpg</label>
 			</div>
 		</div>
@@ -49,9 +85,6 @@
 			<a href="#" class="canvas__dloadBtn btn btn-primary">Download</a>
 		</div>
 	</div>
-
-
-
 </div>
 <!-- <script src="/static/js/konva.min.js"></script> -->
 <script src="/static/js/main.js"></script>
