@@ -24,7 +24,7 @@
 		"nodemon": "^2.0.4",
 		"request": "^2.88.2",
 		"request-promise-native": "^1.0.9",
-		"sharp": "^0.26.0"
+		"sharp": "^0.30.5"
 	},
 	"scripts": {
 		"start": "cross-env NODE_ENV=development nodemon --exec node -- ./index.js",
